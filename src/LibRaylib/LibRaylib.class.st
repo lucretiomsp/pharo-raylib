@@ -2845,10 +2845,11 @@ LibRaylib >> loadWaveSamples: wave [
 
 { #category : 'accessing - platform' }
 LibRaylib >> macLibraryName [
+	"^ FFIMacLibraryFinder new
+		  userPaths: #( './CIG/lib' );
+		  findLibrary: 'libraylib.dylib'"
 
-	^ FFIMacLibraryFinder new
-		userPaths: #('./CIG/lib');
-		findLibrary: 'libraylib.dylib'
+	^ '/Users/domenicocipriani/Downloads/raylib-5.5_macos/lib/libraylib.dylib'
 ]
 
 { #category : 'public' }
@@ -2983,14 +2984,6 @@ LibRaylib >> resumeMusicStream: music [
 LibRaylib >> resumeSound: sound [
 
 	self ffiCall: #(void ResumeSound(Sound sound))
-]
-
-{ #category : 'accessing' }
-LibRaylib >> runner [
-	
-	^ TFProcessLocalWorker new 
-		defaultWorker: TFMainThreadRunner uniqueInstance;
-		yourself
 ]
 
 { #category : 'public' }
